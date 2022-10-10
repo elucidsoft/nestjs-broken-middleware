@@ -7,8 +7,6 @@ async function bootstrap() {
 
   });
 
-  app.enableShutdownHooks([ShutdownSignal.SIGINT, ShutdownSignal.SIGQUIT, ShutdownSignal.SIGTERM]);
-
   await app.listen(3020);
 }
 bootstrap().catch((err) => console.error(err));

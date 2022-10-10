@@ -1,4 +1,4 @@
-import { Controller, Get, Header, Post, Req } from '@nestjs/common';
+import { Controller, Post, Req } from '@nestjs/common';
 import { Request } from 'express';
 
 import { AppService } from './app.service';
@@ -10,10 +10,27 @@ export class AppController {
   //POST to this endpoint with an empty content-type and it works and shows the close in the log
   //POST to it with content-type: application/json and it works but never emits the close event
   @Post('test')
-  async working(@Req() req) {
+  async working(@Req() req: Request) {
     console.log('Inside test');
 
     //This should emit, but it does not because of the json-body-middleware, why???
+    
+      
+      console.log(req.headers['content-type'])
+  
+
+    // await new Promise<void>(async (resolve) => {
+    //   while(true) {
+    //     if(req.closed) {
+    //       console.log("closed");
+    //       resolve();
+    //     }
+    //     console.log("check");
+    //     await new Promise((res) => setTimeout(res, 500));
+    //   }
+    // })
+
+
     req.on('close', () => console.log('-- Connection Closed --'));
 
     //Terminate the connection

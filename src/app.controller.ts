@@ -14,23 +14,6 @@ export class AppController {
     console.log('Inside test');
 
     //This should emit, but it does not because of the json-body-middleware, why???
-    
-      
-      console.log(req.headers['content-type'])
-  
-
-    // await new Promise<void>(async (resolve) => {
-    //   while(true) {
-    //     if(req.closed) {
-    //       console.log("closed");
-    //       resolve();
-    //     }
-    //     console.log("check");
-    //     await new Promise((res) => setTimeout(res, 500));
-    //   }
-    // })
-
-
     req.on('close', () => console.log('-- Connection Closed --'));
 
     //Terminate the connection
